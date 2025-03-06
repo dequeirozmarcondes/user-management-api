@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
+    "resolveJsonModule": true,
     "rootDir": "./src", // Diretório onde o código fonte reside
     "outDir": "./dist", // Diretório onde o código compilado será gerado
     "strict": true, // Habilita as verificações estritas para um código mais seguro
