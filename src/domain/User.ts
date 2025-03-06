@@ -1,11 +1,18 @@
-export class User {
-    constructor(
-        public readonly id: string,
-        public name: string,
-        public email: string
-    ) { }
+//src/models/User.ts
 
-    updateName(newName: string) {
-        this.name = newName;
-    }
+import { Schema, model, Document, Types } from "mongoose";
+
+interface IUser extends Document {
+    _id: Types.ObjectId;
+    name: string;
+    email: string;
+    password: string;
 }
+
+const UserSchema = new Schema<IUser>({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+
+export const User = model<IUser>("User", UserSchema);
