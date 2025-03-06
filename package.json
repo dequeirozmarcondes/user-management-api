@@ -1,7 +1,7 @@
 {
   "name": "user-management-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API Rest construida em Nodejs com Typescript e Express para gerenciamento de usuários.",
   "main": "server.js",
   "scripts": {
     "start": "node dist/server.js",
@@ -16,8 +16,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Renato de Queiroz Marcondes",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
