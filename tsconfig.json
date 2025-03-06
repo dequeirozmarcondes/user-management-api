@@ -2,9 +2,18 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true
-  }
+    "rootDir": "./src", // Diretório onde o código fonte reside
+    "outDir": "./dist", // Diretório onde o código compilado será gerado
+    "strict": true, // Habilita as verificações estritas para um código mais seguro
+    "esModuleInterop": true, // Permite importações mais flexíveis
+    "skipLibCheck": true, // Ignora a verificação dos arquivos de declaração de tipo (para maior desempenho)
+    "forceConsistentCasingInFileNames": true // Garante que a capitalização dos nomes de arquivos seja consistente
+  },
+  "include": [
+    "src"
+  ], // Inclui apenas o diretório src
+  "exclude": [
+    "node_modules",
+    "dist"
+  ] // Exclui node_modules e dist para evitar compilação desnecessária
 }
