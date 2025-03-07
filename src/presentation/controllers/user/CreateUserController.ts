@@ -1,8 +1,8 @@
 //UserController.ts
 
 import { Request, Response } from "express";
-import { CreateUserUseCase } from "../../application/use-cases/CreateUserUseCase";
-import { UserRepository } from "../../infrastructure/database/UserRepository";
+import { CreateUserUseCase } from "../../../application/use-cases/users/CreateUserUseCase";
+import { UserRepository } from "../../../infrastructure/database/UserRepository";
 
 
 const userRepository = new UserRepository();

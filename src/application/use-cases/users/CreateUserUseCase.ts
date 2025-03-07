@@ -1,7 +1,7 @@
 //CreateUserUseCase.ts
 
-import { CreateUserDTO } from "../dto/UserDTO";
-import { IUserRepository } from "../interfaces/IUserRepository";
+import { CreateUserDTO } from "../../dto/UserDTO";
+import { IUserRepository } from "../../interfaces/IUserRepository";
 
 export class CreateUserUseCase {
     private userRepository: IUserRepository;
