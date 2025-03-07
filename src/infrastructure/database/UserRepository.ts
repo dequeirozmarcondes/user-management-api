@@ -1,7 +1,7 @@
-import { User, IUser } from "../../domain/entities/User.js";
-import { CreateUserDTO, UpdateUserDTO } from "../../presentation/dtos/UserDTO.js";
-import { IUserRepository } from "../../domain/interfaces/IUserRepository.js";
-import logger from "@/infrastructure/logging/logger.js";
+import { User, IUser } from "../../domain/User";
+import { CreateUserDTO, UpdateUserDTO } from "../../application/dto/UserDTO";
+import { IUserRepository } from "../../application/interfaces/IUserRepository";
+import logger from "../logging/logger";
 
 // Erros personalizados
 class UserNotFoundError extends Error {
@@ -41,7 +41,7 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    async findByEmail(email: string): Promise<IUser | null> {
+    async findByEmail(email: string): Promise<IUser> {
         try {
             const user = await User.findOne({ email });
             if (!user) {
@@ -59,7 +59,7 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    async findById(id: string): Promise<IUser | null> {
+    async findById(id: string): Promise<IUser> {
         try {
             const user = await User.findById(id);
             if (!user) {

@@ -3,7 +3,7 @@
     "info": {
         "title": "User Management API",
         "version": "1.0.0",
-        "description": "API for managing users in the system"
+        "description": "API for managing users in the system. It allows you to create and retrieve users."
     },
     "paths": {
         "/users": {
@@ -24,15 +24,28 @@
                                         "type": "object",
                                         "properties": {
                                             "id": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The unique identifier of the user"
                                             },
                                             "name": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The name of the user"
                                             },
                                             "email": {
-                                                "type": "string"
+                                                "type": "string",
+                                                "description": "The email address of the user"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "description": "The password of the user"
                                             }
-                                        }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "name",
+                                            "email",
+                                            "password"
+                                        ]
                                     }
                                 }
                             }
@@ -54,33 +67,66 @@
                                 "type": "object",
                                 "properties": {
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the user",
+                                        "example": "John Doe"
                                     },
                                     "email": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The email address of the user",
+                                        "example": "johndoe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "The password of the user",
+                                        "example": "senha123"
                                     }
-                                }
+                                },
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ]
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "User created",
+                        "description": "User created successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
                                         "id": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "The unique identifier of the newly created user"
                                         },
                                         "name": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "The name of the newly created user"
                                         },
                                         "email": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "The email address of the newly created user"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "The password of the newly created user"
                                         }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "name",
+                                        "email",
+                                        "password"
+                                    ],
+                                    "example": {
+                                        "id": "60d2bdb5f1232f001d7edc3f",
+                                        "name": "John Doe",
+                                        "email": "johndoe@example.com",
+                                        "password": "securepassword123"
                                     }
                                 }
                             }

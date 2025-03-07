@@ -1,11 +1,12 @@
+//userRoutes.ts
+
 import { Router } from "express";
 import { CreateUserController } from "../controllers/UserController";
 
-const router = Router();
+export const router = Router();
 
-router.get("/users", async (req, res) => {
+// Rota para criação de usuário - Usando POST
+router.post("/users", async (req, res) => {
     const controller = new CreateUserController();
     await controller.handle(req, res);
 });
-
-export { router };

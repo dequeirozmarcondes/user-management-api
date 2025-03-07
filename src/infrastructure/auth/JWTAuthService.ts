@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { IUserRepository } from "../../application/interfaces/IUserRepository.js";
-import { config } from "../../config/config.js";
+import { config } from "../config/authConfig.js";
 
 interface JwtPayload {
     id: string;
