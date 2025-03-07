@@ -1,17 +1,18 @@
-// DeleteUserController.ts
-
 import { Request, Response } from "express";
 import { DeleteUserUseCase } from "../../../application/use-cases/users/DeleteUserUseCase";
-import { UserRepository } from "../../../infrastructure/database/UserRepository";
-
-const userRepository = new UserRepository();
+import { IUserRepository } from "../../../application/interfaces/IUserRepository";
 
 export class DeleteUserController {
+    private deleteUserUseCase: DeleteUserUseCase;
+
+    constructor(userRepository: IUserRepository) {
+        this.deleteUserUseCase = new DeleteUserUseCase(userRepository);
+    }
+
     async handle(req: Request, res: Response): Promise<Response> {
         try {
             const userId = req.params.id; // Obtém o ID do usuário a partir dos parâmetros da URL
-            const deleteUserUseCase = new DeleteUserUseCase(userRepository);
-            await deleteUserUseCase.execute(userId); // Exclui o usuário
+            await this.deleteUserUseCase.execute(userId); // Exclui o usuário
             return res.status(204).send(); // Retorna 204 No Content (sucesso)
         } catch (error) {
             if (error instanceof Error) {

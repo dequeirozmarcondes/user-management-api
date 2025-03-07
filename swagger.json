@@ -249,6 +249,140 @@
                     }
                 }
             }
+        },
+        "/users/login": {
+            "post": {
+                "summary": "User login",
+                "operationId": "login",
+                "tags": [
+                    "auth"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The email address of the user",
+                                        "example": "johndoe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "The password of the user",
+                                        "example": "senha123"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User logged in successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "description": "JWT token"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/users/logout": {
+            "post": {
+                "summary": "User logout",
+                "operationId": "logout",
+                "tags": [
+                    "auth"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User logged out successfully"
+                    }
+                }
+            }
+        },
+        "/users/refresh-token": {
+            "post": {
+                "summary": "Refresh user token",
+                "operationId": "refreshToken",
+                "tags": [
+                    "auth"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "refreshToken": {
+                                        "type": "string",
+                                        "description": "The refresh token",
+                                        "example": "some-refresh-token"
+                                    }
+                                },
+                                "required": [
+                                    "refreshToken"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "description": "New JWT token"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid refresh token"
+                    }
+                }
+            }
         }
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "security": [
+            {
+                "BearerAuth": []
+            }
+        ]
     }
 }

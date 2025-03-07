@@ -3,9 +3,10 @@ import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
-import { router } from "./presentation/routes/userRoutes";
 import connectDB from "./infrastructure/database/configMongoose";
-// import asyncErrorsHandle from "./infrastructure/middlewares/async-errors-handle";
+import { userRoutes } from "./presentation/routes/userRoutes";
+import { authUserRoutes } from "./presentation/routes/authUserRoutes";
+
 
 const app = express();
 
@@ -16,10 +17,7 @@ app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Rotas
-app.use(router);
-
-// Middleware de tratamento de erros **DEVE SER O ÚLTIMO**
-// app.use(asyncErrorsHandle);
+app.use(userRoutes, authUserRoutes);
 
 // Conecta ao MongoDB
 connectDB();

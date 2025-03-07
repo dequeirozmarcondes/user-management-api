@@ -1,17 +1,17 @@
-//UserController.ts
-
 import { Request, Response } from "express";
 import { CreateUserUseCase } from "../../../application/use-cases/users/CreateUserUseCase";
-import { UserRepository } from "../../../infrastructure/database/UserRepository";
-
-
-const userRepository = new UserRepository();
+import { IUserRepository } from "../../../application/interfaces/IUserRepository";
 
 export class CreateUserController {
+    private createUserUseCase: CreateUserUseCase;
+
+    constructor(userRepository: IUserRepository) {
+        this.createUserUseCase = new CreateUserUseCase(userRepository);
+    }
+
     async handle(req: Request, res: Response): Promise<Response> {
         try {
-            const createUserUseCase = new CreateUserUseCase(userRepository);
-            const user = await createUserUseCase.execute(req.body);
+            const user = await this.createUserUseCase.execute(req.body);
             return res.status(201).json(user);
         } catch (error) {
             if (error instanceof Error) {
@@ -21,4 +21,3 @@ export class CreateUserController {
         }
     }
 }
-

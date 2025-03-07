@@ -4,7 +4,7 @@ if (!process.env.JWT_SECRET || !process.env.JWT_REFRESH_SECRET) {
   );
 }
 
-export const config = {
+export const authConfig = {
   jwtSecret: process.env.JWT_SECRET,
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
 };
